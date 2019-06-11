@@ -1,16 +1,28 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Map from "./Map/Map"
-import Map2 from './Map/map2'
+import CountryDetails from './Map/CountryDetails'
+import { Route, Switch } from 'react-router-dom'
 import './App.css';
 
-function App() {
-  return (
+class App extends Component {
+  render() {
+      return(
     <div className="App">
-      {/* <Map />  */}
-      <Map2 />
+      <Switch>
+      <Route
+						path="/"
+						render={(routerProps) => <Map {...routerProps} />}>
 
+      </Route>
+      <Route
+						path="/country_details"
+						render={(routerProps) => <CountryDetails {...routerProps} />}>
+
+      </Route>
+      </Switch>
     </div>
   );
+}
 }
 
 export default App;

@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
 import { Chart } from "react-google-charts";
+import Axios from 'axios';
 
 class Map2 extends Component {
     constructor(){
         super()
         this.state ={
             data:[
-                ["Country", "Popularity"],
-                ["Germany", 200],
-                ["United States", 300],
-                ["Brazil", 400],
-                ["Canada", 500],
-                ["France", 600],
-                ["RU", 700]
+                ["Country", "kton CO2"],
               ]
         }
+    }
+    componentDidMount(){
+        Axios.get('http://localhost:3001/pollutions').then(pollution =>{
+            let newArray  = pollution.data.map(country =>{
+                let countryData = []
+                countryData.push(country.Country)
+                countryData.push(country[2016])
+                return countryData})
+            
+            this.setState({
+                data: this.state.data.push(newArray)
+            
+        })
+            console.log(pollution.data)
+        })
     }
     render() {
         return (
@@ -43,3 +53,8 @@ class Map2 extends Component {
 
 export default Map2;
 
+
+                                        // {this.state.countries.filter(country=> {
+                                        //     return country["country-code"] == geo.id
+                                        // }).map(country=>{
+                                        //     return country.name})[0]}
