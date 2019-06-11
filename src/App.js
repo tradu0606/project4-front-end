@@ -9,12 +9,12 @@ class App extends Component {
       return(
     <div className="App">
       <Switch>
-      <Route
-						path="/"
+      <Route exact
+						path="/" 
 						render={(routerProps) => <Map {...routerProps} />}>
 
       </Route>
-      <Route
+      <Route exact
 						path="/country_details"
 						render={(routerProps) => <CountryDetails {...routerProps} />}>
 

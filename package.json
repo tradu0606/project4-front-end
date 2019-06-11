@@ -10,6 +10,7 @@
     "d3-scale": "^3.0.0",
     "react": "^16.8.6",
     "react-axios": "^2.0.3",
+    "react-chartjs-2": "^2.7.6",
     "react-dom": "^16.8.6",
     "react-google-charts": "^3.0.13",
     "react-motion": "^0.5.2",

@@ -7,7 +7,7 @@ import {
     Marker
 } from "react-simple-maps"
 import { Component } from "react"
-import {Link} from 'react-dom'
+import {Link} from 'react-router-dom'
 import axios from 'axios'
 import ReactTooltip from "react-tooltip"
 
@@ -64,9 +64,13 @@ class Map extends Component {
         } else {
             let countryPollution
             let countryPollutions = this.state.pollutions.filter(pollution => {
-                countryPollution = pollution
+                
                 return pollution.Country.toLowerCase() === countryName.toLowerCase()
-            }).map(pollutions => pollutions["2016"])
+            }).map(pollutions => {
+                countryPollution = pollutions
+               return pollutions["2016"]
+            }
+                )
             return {
                 countryName: countryName,
                 countryPollutions: countryPollutions,
@@ -76,7 +80,8 @@ class Map extends Component {
     }
     getCountryDetails=(geo)=>{
         let getCountry = this.getCountry(geo)
-        return <Link to={{ pathname: '/country_details', state: { country: getCountry.pollutions}}} />
+        console.log(getCountry.countryDetails)
+        return getCountry.countryDetails
         
     }
     getCountryPollution = (geo) => {
@@ -157,16 +162,17 @@ class Map extends Component {
                             >
                                 {(geos, proj) =>
                                     geos.map((geo, i) => (
-
+                                        <Link to={{ pathname: '/country_details', state: { country: this.getCountryDetails(geo)}}}>
                                         <Geography
                                             key={geo.id + i}
                                             data-tip={this.getCountryPollution(geo)}
                                             geography={geo}
                                             projection={proj}
-                                            onClick={this.getCountryDetails(geo)}
+                                            // onClick={this.getCountryDetails(geo)}
                                             style={this.getBackgroundColor(geo)}
 
                                         />
+                                        </Link>
                                     ))
                                 }
                             </Geographies>
