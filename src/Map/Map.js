@@ -13,12 +13,13 @@ import ReactTooltip from "react-tooltip"
 import TopNav from '../TopNav/TopNav'
 import './globemap.css'
 import { Route, Switch } from 'react-router-dom'
+import MapComponent from '../Map/MapComponent'
+import Bubble from '../Bubble/BubbleChart'
+import CountryDetails from '../Map/CountryDetails'
+import './Map.css'
 
 
-const mapStyles = {
-    width: "90%",
-    height: "auto",
-}
+
 
 let cache = {};
 
@@ -129,12 +130,25 @@ class Map extends Component {
 
     }
 
+    countryDetailsDiv =(geo)=>{
+        let country = this.getCountryDetails(geo)
+        this.setState({
+            countryDetailsDiv: <div>
+                <h3>Country: {country.Country}</h3>
+                <h3>Polulation: </h3>
+                <h3>Population growth rate:</h3>
+                <CountryDetails />
+            </div>
+        })
+    }
+
     getCountryPollution = (geo) => {
         let getCountry = this.getCountry(geo)
         return `${getCountry.countryName}: ${getCountry.countryPollutions}kton CO2`
     }
-    getBackgroundColor(geo) {
+    getBackgroundColor = (geo) => {
         let getCountry = this.getCountry(geo)
+        console.log(getCountry)
         if (getCountry.countryName === undefined) {
             return {
                 default: { fill: "#CFD8DC" },
@@ -146,6 +160,7 @@ class Map extends Component {
             }
         } else {
             let pollutions
+            console.log(this.state)
             if (this.state.totalOrCapitaValue === "CO2 PER CAPITA EMISSIONS") {
                 pollutions = this.state.pollutionsTotal
             } else {
@@ -199,74 +214,49 @@ class Map extends Component {
         console.log("render")
         return (
             <div>
-                      <Route exact
-                        path="/" 
-                        render={(routerProps) => 
-                <TopNav 
-                totalOrCapitaValue={this.state.totalOrCapitaValue}
-                totalOrCapita={this.totalOrCapita} 
-                loadYearData={this.loadYearData}
-                pollutionsData={this.pollutionsData}
-                yearButtonValue={this.state.yearButtonValue}
-                bubbleOrGlobe={this.state.bubbleOrGlobe}
-                ></TopNav>}>
+                <Route
+                    path="/"
+                    render={(routerProps) =>
+                        <TopNav
+                            totalOrCapitaValue={this.state.totalOrCapitaValue}
+                            totalOrCapita={this.totalOrCapita}
+                            loadYearData={this.loadYearData}
+                            pollutionsData={this.pollutionsData}
+                            yearButtonValue={this.state.yearButtonValue}
+                            bubbleOrGlobe={this.state.bubbleOrGlobe}
+                            {...routerProps}
+                        ></TopNav>}>
                 </Route>
-                {/* <div>
-                    <input type="button" onClick={this.totalOrCapita} value={this.state.totalOrCapitaValue}></input>
-                    <input type="button" onClick={this.loadYearData} value="1990"></input>
-                    <input type="button" onClick={this.loadYearData} value="2000"></input>
-                    <input type="button" onClick={this.loadYearData} value="2005"></input>
-                    <input type="button" onClick={this.loadYearData} value="2010"></input>
-                    <input type="button" onClick={this.loadYearData} value="2012"></input>
-                    <input type="button" onClick={this.loadYearData} value="2014"></input>
-                    <input type="button" onClick={this.loadYearData} value="2015"></input>
-                    <input type="button" onClick={this.loadYearData} value="2016"></input>
-                    <Link to={{
-                        pathname: '/bubble',
-                        state: {
-                            pollutionData: this.pollutionsData(),
-                            yearButtonValue: this.state.yearButtonValue
-                        }
-                    }}>
-                        <input type="button" value={this.state.bubbleOrGlobe}></input>
-                    </Link>
-                </div> */}
-                <div id="globemap">
-                    <ComposableMap
-                        width={500}
-                        height={500}
-                        projection="orthographic"
-                        projectionConfig={{ scale: 220 }}
-                        style={mapStyles}
-                    >
-                        <ZoomableGlobe>
-                            <circle cx={250} cy={250} r={220} fill="transparent" stroke="#CFD8DC" />
-                            <Geographies
-                                disableOptimization
-                                geography="https://unpkg.com/world-atlas@1/world/110m.json"
-                            >
-                                {(geos, proj) =>
-                                    geos.map((geo, i) => (
-                                        <Link to={{ pathname: '/country_details', state: { country: this.getCountryDetails(geo) } }}>
-                                            <Geography
-                                                key={geo.id + i}
-                                                data-tip={this.getCountryPollution(geo)}
-                                                geography={geo}
-                                                projection={proj}
-                                                // onClick={this.getCountryDetails(geo)}
-                                                style={this.getBackgroundColor(geo)}
+                <div className='mapHolder'>
+                    <div className="elements">
 
-                                            />
-                                        </Link>
-                                    ))
-                                }
-                            </Geographies>
-                        </ZoomableGlobe>
-                    </ComposableMap>
+                        <Route exact
+                            path="/map"
+                            render={(routerProps) => <MapComponent
+                                totalOrCapitaValue={this.state.totalOrCapitaValue}
+                                totalOrCapita={this.totalOrCapita}
+                                loadYearData={this.loadYearData}
+                                pollutionsData={this.pollutionsData}
+                                yearButtonValue={this.state.yearButtonValue}
+                                bubbleOrGlobe={this.state.bubbleOrGlobe}
+                                getCountryDetails={this.getCountryDetails}
+                                getCountryPollution={this.getCountryPollution}
+                                getBackgroundColor={this.getBackgroundColor}
+                                getCountry={this.getCountry}
+                                {...routerProps} />}>
+                        </Route>
+                        <Route exact
+                            path="/map/bubble"
+                            render={(routerProps) => <Bubble {...routerProps} />}>
+                        </Route>
+                        {/* <Route exact
+                            path="/map/bubble"
+                            render={(routerProps) => <CountryDetails  {...routerProps} />}>
+                        </Route> */}
+                    </div>
+                    <div className="elements">{this.state.countryDetailsDiv}</div>
                 </div>
-                <ReactTooltip />
-            </div >
-        )
+            </div>)
     }
 }
 

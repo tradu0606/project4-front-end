@@ -9,9 +9,32 @@ class Bubble extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+  
+        if (nextProps.totalOrCapitaValue !== this.props.totalOrCapitaValue || 
+            nextProps.yearButtonValue !== this.props.yearButtonValue) {
+            let yearButtonValue = nextProps.yearButtonValue
+            let pollutionData = nextProps.pollutionData()
+            let data = pollutionData.map(countyData=>{
+                return {
+                    label: countyData.Country,
+                    value:  Math.round(countyData[yearButtonValue]) 
+                }
+            })
+            this.setState({
+                data: data,
+                yearButtonValue: yearButtonValue,
+                totalOrCapitaValue: nextProps.totalOrCapitaValue
+            })
+        }
+      }
+
     componentDidMount(){
-        let yearButtonValue = this.props.location.state.yearButtonValue
-        let data = this.props.location.state.pollutionData.map(countyData=>{
+        
+        
+        let yearButtonValue = this.props.yearButtonValue
+        let pollutionData = this.props.pollutionData()
+        let data = pollutionData.map(countyData=>{
             return {
                 label: countyData.Country,
                 value:  Math.round(countyData[yearButtonValue]) 
@@ -19,13 +42,15 @@ class Bubble extends Component {
         })
         this.setState({
             data: data,
-            yearButtonValue: yearButtonValue
+            yearButtonValue: yearButtonValue,
+            totalOrCapitaValue: this.props.totalOrCapitaValue
         })
-        console.log(data)
+        
 
 }
 
     render() {
+       
         return (
             <div>
                 <BubbleChart

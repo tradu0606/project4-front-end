@@ -21,19 +21,13 @@ const mapStyles = {
 }
 
 class MapComponent extends Component {
-    constructor() {
-        super()
-        this.state = {
-            pollutionsTotal: [],
-            countries: [],
-            bubbleOrGlobe: "Bubble Chart",
-            yearButtonValue: "2016",
-            totalOrCapitaValue: "CO2 PER CAPITA EMISSIONS",
+    componentDidMount(){
+        this.setState({
+            totalOrCapitaValue: this.props.totalOrCapitaValue
+        })
 
-
-        }
+        console.log(this.props.totalOrCapitaValue)
     }
-
     render() {
         return (
             <div id="globemap">
@@ -52,7 +46,7 @@ class MapComponent extends Component {
                         >
                             {(geos, proj) =>
                                 geos.map((geo, i) => (
-                                    <Link to={{ pathname: '/country_details', state: { country: this.props.getCountryDetails(geo) } }}>
+                                    <Link to={{ pathname: '/map/country_details', state: { country: this.props.getCountryDetails(geo) } }}>
                                         <Geography
                                             key={geo.id + i}
                                             data-tip={this.props.getCountryPollution(geo)}
