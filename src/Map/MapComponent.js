@@ -29,6 +29,7 @@ class MapComponent extends Component {
         console.log(this.props.totalOrCapitaValue)
     }
     render() {
+        console.log("renderMap")
         return (
             <div id="globemap">
                 <ComposableMap
@@ -46,17 +47,18 @@ class MapComponent extends Component {
                         >
                             {(geos, proj) =>
                                 geos.map((geo, i) => (
-                                    <Link to={{ pathname: '/map/country_details', state: { country: this.props.getCountryDetails(geo) } }}>
+                                    
                                         <Geography
                                             key={geo.id + i}
                                             data-tip={this.props.getCountryPollution(geo)}
+                                            // onMouseEnter={this.props.getCountryDetails(geo)}
                                             geography={geo}
                                             projection={proj}
-                                            // onClick={this.getCountryDetails(geo)}
+                                            onMouseEnter={()=>this.props.getCountryDetails(geo)}
                                             style={this.props.getBackgroundColor(geo)}
 
                                         />
-                                    </Link>
+                                   
                                 ))
                             }
                         </Geographies>

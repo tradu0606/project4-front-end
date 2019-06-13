@@ -2,23 +2,34 @@ import React, { Component } from 'react';
 import { Bar, Line } from 'react-chartjs-2';
 
 
+
 class CountryDetails extends Component {
-        constructor() {
-            super()
-            this.state = {
-                data:{}
-            }
+    constructor() {
+        super()
+        this.state = {
+            data: {},
+            country: {}
         }
+    }
+    componentWillReceiveProps = (nextProps) => {
+        if (nextProps.hoveredCountryDetails === undefined) {
+            nextProps = this.props
+        } else if (nextProps.hoveredCountryDetails.Country !== this.props.hoveredCountryDetails.Country) {
+            this.componentDidMount()
+        }
+    }
 
-
-    componentDidMount(){
+    componentDidMount = () => {
         var labels = ["1990", "2000", "2005", "2010", "2012", "2014", "2015", "2016"]
-        var data = labels.map(year =>{
-            return this.props.location.state.country[year]
+        var country = this.props.hoveredCountryDetails
+        console.log(this.props.hoveredCountryDetails)
+        var data = labels.map(year => {
+            return country[year]
         })
-        var countryName = this.props.location.state.country.Country
+        var countryName = country.Country
         console.log(countryName)
         this.setState({
+            countryName: countryName,
             data: {
                 labels: labels,
                 datasets: [
@@ -40,17 +51,20 @@ class CountryDetails extends Component {
         })
     }
 
-    
+
     render() {
-        console.log(this.props.location.state)
+        // console.log(this.state.data)
         return (
-            
-                <Line 
-                data={this.state.data}
+            <div className="countryDetails">
+                <h3>Country: {this.state.countryName}</h3>
+                <h3>Polulation: </h3>
+                <h3>Population growth rate:</h3>
+                <Line
+                    data={this.state.data}
                 >
-                
+
                 </Line>
-            
+            </div>
         );
     }
 }
