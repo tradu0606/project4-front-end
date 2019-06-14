@@ -32,6 +32,6 @@ Back-end repository: https://github.com/tradu0606/project4-back-end  <br/>
 Back-end deployed: https://co2-emissions-map.herokuapp.com  <br/>
 
 ### Screenshot  <br/>
-![alt text](/Users/tanyaradu/sei/projects/project4Data/Screen.png)
+![alt text](https://github.com/tradu0606/project4-front-end/blob/master/img/Screen.png)
 
 
