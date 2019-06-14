@@ -58,7 +58,7 @@ class MapComponent extends Component {
                                             style={this.props.getBackgroundColor(geo)}
 
                                         />
-                                   
+                                    
                                 ))
                             }
                         </Geographies>

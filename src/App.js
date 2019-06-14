@@ -48,7 +48,7 @@ class App extends Component {
           countries: countries.data
         }))
 
-    axios.get('http://localhost:3001/pollutions')
+    axios.get('https://co2-emissions-map.herokuapp.com/pollutions')
       .then(pollutions => {
         this.setState({
           pollutionsTotal: pollutions.data
@@ -268,7 +268,7 @@ class App extends Component {
             </Route>
 
           </div>
-          <div className="elements">
+          <div className="elements" id="chartHolder">
             <Route exact
               path="/map"
               render={(routerProps) => <CountryDetails hoveredCountryDetails={this.state.hoveredCountryDetails} {...routerProps} />}>

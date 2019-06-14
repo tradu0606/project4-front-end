@@ -62,7 +62,7 @@ class Bubble extends Component {
                     width={1000}
                     height={800}
                     padding={0}
-                    showLegend={true} // optional value, pass false to disable the legend.
+                    showLegend={false} // optional value, pass false to disable the legend.
                     legendPercentage={20} // number that represent the % of with that legend going to use.
                     legendFont={{
                         family: 'Arial',
@@ -82,7 +82,7 @@ class Bubble extends Component {
                         color: '#fff',
                         weight: 'bold',
                     }}
-                    //Custom bubble/legend click functions such as searching using the label, redirecting to other page
+                    
                     bubbleClickFunc={this.bubbleClick}
                     legendClickFun={this.legendClick}
                     data={this.state.data}

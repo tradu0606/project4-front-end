@@ -6,9 +6,13 @@ height: 1000px;
     display: flex;
     width: 100%;
     flex-direction: row;
+    justify-content: center;
 }
 .countryDetails{
-    float: right;
-    width: 400px;
-    height: 300px;
+    float: left;
+    width: 80%;
+}
+#chartHolder{
+    padding-top: 120px;
+    width: 50%;
 }
