@@ -1,6 +1,6 @@
 ### Subject 
 
-This visualization shows the difference between fossil CO2 emissions by country starting 1990 till 2016.  Line Chart shows changes in CO2 emissions over the years and population growth rate from 1990 till 2016. 
+This Globe Chart and Bubble Chart visualization shows the difference between fossil CO2 emissions by country starting 1990 till 2016.  Line Chart shows changes in CO2 emissions over the years and population growth rate from 1990 till 2016. 
 
 ### Data
 
@@ -9,7 +9,7 @@ https://edgar.jrc.ec.europa.eu/ - Fossil CO2 emissions of all world countries, 2
 
 https://data.worldbank.org – Population and population growth rate since 1960 till 2017 <br/>
 
-######## Json data-sets based on data from EDGAR and Data World Bank: <br/>
+###### Json data-sets based on data from EDGAR and Data World Bank: <br/>
 
 Population per country since 1960 https://co2-emissions-map.herokuapp.com/population_yearly  <br/>
 Population rate per country since 1960 https://co2-emissions-map.herokuapp.com/population  <br/>
