@@ -22,7 +22,7 @@ Globe map - react-simple-maps - https://www.react-simple-maps.io/  <br/>
 Double Axis Line Chart – Charts.js  https://www.chartjs.org/  <br/>
 Bubble Chart – d3 https://d3js.org/  <br/>
 Client side – React  <br/>
-Sever Side – Node.js, Express, MongoDB  <br/>
+Server Side – Node.js, Express, MongoDB  <br/>
 
 ### Links  <br/>
 
