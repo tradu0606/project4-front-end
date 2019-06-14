@@ -7,17 +7,14 @@ import {
     Marker
 } from "react-simple-maps"
 import { Component } from "react"
-import { Link } from 'react-router-dom'
-import axios from 'axios'
 import ReactTooltip from "react-tooltip"
-import TopNav from '../TopNav/TopNav'
 import './globemap.css'
-import CountryDetails from '../Map/CountryDetails'
-import { Route, Switch } from 'react-router-dom'
-import Bubble from '../Bubble/BubbleChart'
 const mapStyles = {
     width: "90%",
     height: "auto",
+    pressed:{
+        outline: "none",
+    }
 }
 
 class MapComponent extends Component {
@@ -51,6 +48,11 @@ class MapComponent extends Component {
                                         <Geography
                                             key={geo.id + i}
                                             data-tip={this.props.getCountryPollution(geo)}
+                                            style={{
+                                                pressed:{
+                                                    outline: "none",
+                                                }
+                                            }}
                                             // onMouseEnter={this.props.getCountryDetails(geo)}
                                             geography={geo}
                                             projection={proj}

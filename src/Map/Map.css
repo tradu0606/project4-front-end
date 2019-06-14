@@ -1,6 +1,6 @@
 #globemap{
-    width: 1000px;
-height: 1000px;
+    width: 100%;
+
 }
 .mapHolder{
     display: flex;
@@ -11,8 +11,13 @@ height: 1000px;
 .countryDetails{
     float: left;
     width: 80%;
+    color:rgb(187, 187, 197);
 }
-#chartHolder{
-    padding-top: 120px;
-    width: 50%;
+#mapElement{
+
+    width: 40%;
 }
+#mapElement{
+    width: 60%;
+}
+

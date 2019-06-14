@@ -9,9 +9,22 @@ body{
 }
 input{
   background-color: rgb(28, 28, 65);
-  font-size: 25px;
-  color: rgb(255, 255, 255);
+  font-size: 20px;
+  color: rgb(187, 187, 197);
   border: 1px solid rgb(48, 48, 61);
-  margin: 20px 3px 3px 10px;
-  padding: 2px 4px 2px 4px;
+
+}
+input:hover{
+  background-color: rgb(41, 41, 95);
+  color: rgb(236, 236, 241);
+}
+
+input:focus {
+  outline:rgb(12, 12, 15);
+}
+h1{
+  margin: 0;
+  padding: 0;
+  color: rgb(187, 187, 197);
+  outline-color: rgb(5, 5, 7);
 }

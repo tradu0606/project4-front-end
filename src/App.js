@@ -1,13 +1,5 @@
 import React from "react"
-import {
-  ComposableMap,
-  ZoomableGlobe,
-  Geographies,
-  Geography,
-  Marker
-} from "react-simple-maps"
 import { Component } from "react"
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 import ReactTooltip from "react-tooltip"
 import TopNav from './TopNav/TopNav'
@@ -34,7 +26,7 @@ class App extends Component {
       bubbleOrGlobe: "Bubble Chart",
       yearButtonValue: "2016",
       totalOrCapitaValue: "CO2 PER CAPITA EMISSIONS",
-      bubbleOrGlobePath: "/map/bubble",
+      bubbleOrGlobePath: "/bubble",
       hoveredCountryDetails: {}
 
 
@@ -70,13 +62,13 @@ class App extends Component {
     if (this.state.bubbleOrGlobe === "Bubble Chart") {
       this.setState({
         bubbleOrGlobe: "Globe Chart",
-        bubbleOrGlobePath: '/map'
+        bubbleOrGlobePath: '/'
       })
       return <Redirect to={this.state.bubbleOrGlobePath} />
     } else {
       this.setState({
         bubbleOrGlobe: "Bubble Chart",
-        bubbleOrGlobePath: "map/bubble"
+        bubbleOrGlobePath: "/bubble"
       })
       return <Redirect to={this.state.bubbleOrGlobePath} />
     }
@@ -132,7 +124,7 @@ class App extends Component {
   totalOrCapita = (evt) => {
     evt.preventDefault()
     if (this.state.pollutionsPerCapita === undefined) {
-      axios.get('http://localhost:3001/pollutions_per_capita')
+      axios.get('https://co2-emissions-map.herokuapp.com/pollutions_per_capita')
         .then(pollutions => {
           this.setState({
             pollutionsPerCapita: pollutions.data
@@ -225,6 +217,7 @@ class App extends Component {
   }
   render() {
     return (<div className="App">
+      <div><h1>Global Carbon Monoxide Emissions</h1></div>
       <div>
         <Route
           path="/"
@@ -242,10 +235,10 @@ class App extends Component {
             ></TopNav>}>
         </Route>
         <div className='mapHolder'>
-          <div className="elements">
+          <div className="elements" id="mapElement">
 
             <Route exact
-              path="/map"
+              path="/"
               render={(routerProps) => <MapComponent
                 totalOrCapitaValue={this.state.totalOrCapitaValue}
                 totalOrCapita={this.totalOrCapita}
@@ -260,7 +253,7 @@ class App extends Component {
                 {...routerProps} />}>
             </Route>
             <Route exact
-              path="/map/bubble"
+              path="/bubble"
               render={(routerProps) => <Bubble yearButtonValue={this.state.yearButtonValue}
                 pollutionData={this.pollutionsData}
                 totalOrCapitaValue={this.state.totalOrCapitaValue}
@@ -268,9 +261,9 @@ class App extends Component {
             </Route>
 
           </div>
-          <div className="elements" id="chartHolder">
-            <Route exact
-              path="/map"
+          <div className="elements" id="mapElement">
+            <Route
+              path="/"
               render={(routerProps) => <CountryDetails hoveredCountryDetails={this.state.hoveredCountryDetails} {...routerProps} />}>
             </Route></div>
         </div>
