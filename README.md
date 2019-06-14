@@ -26,5 +26,5 @@ Sever Side – Node.js, Express, MongoDB
 Front-end repository: https://github.com/tradu0606/project4-front-end
 Front-end deploed: http://co2-emissions-map.surge.sh/
 Back-end repository: https://github.com/tradu0606/project4-back-end
-Back-end deployed:
+Back-end deployed: https://co2-emissions-map.herokuapp.com
 
