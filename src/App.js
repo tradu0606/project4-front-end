@@ -268,6 +268,12 @@ class App extends Component {
             </Route></div>
         </div>
       </div>
+      <div className="bottomNav">
+                <h4>Personal project by Tetyana Radu</h4>
+                <h4 id="aboutProjectLink">About project and resources</h4>
+                <h4>EMAIL: tetyana.radu@gmail.com</h4>
+
+      </div>
     </div>)
   }
 }

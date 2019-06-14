@@ -21,3 +21,13 @@
     width: 60%;
 }
 
+.rsm-geographies{
+    outline-style: none;
+    border: 0;
+}
+
+.rsm-geographies:focus {
+    outline-style: none;
+    border: 0;
+}
+

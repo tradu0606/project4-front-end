@@ -43,7 +43,9 @@ class CountryDetails extends Component {
                         position: "left",
                         id: "y-axis-1",
                         ticks: {
-                            fontColor: "#fa936a"
+                            fontColor: "#fa936a",
+                            min: 0,
+
                         }
                     }, {
                         type: "linear", 
@@ -51,7 +53,8 @@ class CountryDetails extends Component {
                         position: "right",
                         id: "y-axis-2",
                         ticks: {
-                            fontColor: "#f72003"
+                            fontColor: "#f72003",
+
                         },
 
                         gridLines: {
@@ -73,7 +76,7 @@ class CountryDetails extends Component {
                 legend: {
                     display: true,
                     labels: {
-                        fontColor: "#FFFFFF",
+                        fontColor: "rgb(187, 187, 197)",
 
                     }
                 }

@@ -8,7 +8,6 @@ import {
 } from "react-simple-maps"
 import { Component } from "react"
 import ReactTooltip from "react-tooltip"
-import './globemap.css'
 const mapStyles = {
     width: "90%",
     height: "auto",
@@ -49,8 +48,14 @@ class MapComponent extends Component {
                                             key={geo.id + i}
                                             data-tip={this.props.getCountryPollution(geo)}
                                             style={{
+                                                default:{
+                                                    outline: "none",  
+                                                },
                                                 pressed:{
                                                     outline: "none",
+                                                },
+                                                hover:{
+                                                    outline: "none",  
                                                 }
                                             }}
                                             // onMouseEnter={this.props.getCountryDetails(geo)}
