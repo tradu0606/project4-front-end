@@ -34,6 +34,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    document.title = "CO2 Emissions"
     axios.get('https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.json')
       .then(countries =>
         this.setState({
@@ -217,7 +218,7 @@ class App extends Component {
   }
   render() {
     return (<div className="App">
-      <div><h1>Global Carbon Monoxide Emissions</h1></div>
+      <div><h1>Global Carbon Dioxide Emissions</h1></div>
       <div>
         <Route
           path="/"
